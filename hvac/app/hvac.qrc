@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>HVAC.qml</file>
+        <file>SeatHeatButton.qml</file>
+        <file>HeatDegree.qml</file>
+        <file>api/Binding.qml</file>
+        <file>api/MessageId.js</file>
+    </qresource>
+</RCC>

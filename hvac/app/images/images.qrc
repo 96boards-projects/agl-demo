@@ -1,0 +1,26 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>HMI_HVAC_AirDown_Active.svg</file>
+        <file>HMI_HVAC_AirDown_Inactive.svg</file>
+        <file>HMI_HVAC_AirRight_Active.svg</file>
+        <file>HMI_HVAC_AirRight_Inactive.svg</file>
+        <file>HMI_HVAC_AirUp_Active.svg</file>
+        <file>HMI_HVAC_AirUp_Inactive.svg</file>
+        <file>HMI_HVAC_ChairIndicator_OFF.svg</file>
+        <file>HMI_HVAC_ChairIndicator_One.svg</file>
+        <file>HMI_HVAC_ChairIndicator_Two.svg</file>
+        <file>HMI_HVAC_Circulation_Active.svg</file>
+        <file>HMI_HVAC_Circulation_Inactive.svg</file>
+        <file>HMI_HVAC_Fan_Icon.svg</file>
+        <file>HMI_HVAC_Front_Active.svg</file>
+        <file>HMI_HVAC_Front_Inactive.svg</file>
+        <file>HMI_HVAC_Left_Chair_OFF.svg</file>
+        <file>HMI_HVAC_Left_Chair_ON.svg</file>
+        <file>HMI_HVAC_Rear_Active.svg</file>
+        <file>HMI_HVAC_Rear_Inactive.svg</file>
+        <file>HMI_HVAC_Right_Chair_OFF.svg</file>
+        <file>HMI_HVAC_Right_Chair_ON.svg</file>
+        <file>HMI_HVAC_Active.svg</file>
+        <file>HMI_HVAC_Inactive.svg</file>
+    </qresource>
+</RCC>

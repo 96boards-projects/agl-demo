@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="hvac" version="0.1">
+  <name>HVAC</name>
+  <icon src="icon.svg"/>
+  <content src="bin/hvac" type="application/vnd.agl.native"/>
+  <description>This is a demo application used to control and dialog with HVAC system</description>
+  <author>Romain Forlot &lt;romain.forlot@iot.bzh&gt;</author>
+  <license>APL 2.0</license>
+  <feature name="urn:AGL:widget:required-api">
+    <param name="lib/libhvac-demo-binding.so" value="local" />
+  </feature>
+  <feature name="urn:AGL:widget:required-permission">
+    <param name="urn:AGL:permission::public:no-htdocs" value="required" />
+  </feature>
+</widget>
+
+
