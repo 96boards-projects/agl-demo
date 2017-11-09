@@ -446,9 +446,9 @@ static void set(struct afb_req request)
 		/* data format: l:<left_temp>&r:<right_temp>&f:<fan_speed>& */
 
 		/* copy data to buffer */
-    		sprintf(buf, "l:%d&", 20);
-    		sprintf(buf_r, "r:%d&", 30);
-    		sprintf(buf_f, "f:%d&", 40);
+    		sprintf(buf, "l:%d&", hvac_values[0].value);
+    		sprintf(buf_r, "r:%d&", hvac_values[1].value);
+    		sprintf(buf_f, "f:%d&", hvac_values[3].value);
     		strcat(buf, buf_r);
     		strcat(buf, buf_f);
 
