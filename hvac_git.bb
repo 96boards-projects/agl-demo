@@ -8,7 +8,7 @@ LICENSE     = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ae6497158920d9524cf208c09cc4c984"
 
 SRC_URI = "git://github.com/96boards-projects/agl-demo;protocol=git;"
-SRCREV  = "d89be653e40ddd2cfbfd2e597cf030312edcb4c1"
+SRCREV  = "41f7a3fb55b1d2363d8943a823a44c663a88120d"
 
 PV = "4.0+git${SRCPV}"
 S  = "${WORKDIR}/git/hvac"
