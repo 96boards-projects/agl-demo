@@ -15,6 +15,7 @@ This repository consists of [AGL](https://www.automotivelinux.org/) demos for 96
 
 - [Dragonboard410c](https://www.96boards.org/product/dragonboard410c/)
 - [96Boards Compliant Power Supply](http://www.96boards.org/product/power/)
+- [Linksprite 96Boards Touch Screen](https://www.arrow.com/en/products/96boards-display-7/linksprite-technologies-inc)
 - [Sensors Mezzanine](http://www.96boards.org/product/sensors-mezzanine/)
 - [DC motor with Propellers](https://www.amazon.com/Piece-Propeller-Motor-Brushed-Small/dp/B00U53SGRQ)
 - [5mm LED's](https://www.sparkfun.com/products/9590)
@@ -25,7 +26,7 @@ HVAC (Heat Ventilation and Air Control) demo focussed on demostrating the HVAC
 GUI present in AGL demo platform. This involves controlling the fan speed and
 temperature. 
 
-For demonstration purposes, HVAC GUI is modified as below:
+For demonstration purposes, default HVAC GUI is modified as below:
 
 1. Controlling Fan Speed
 2. Controlling Left temperature - Controlling Light intensity
@@ -37,7 +38,7 @@ For demonstration purposes, HVAC GUI is modified as below:
 - Connect DC motor and LEDs to Sensors Mezzanine as per above schematic
 - Power on your 96Boards CE with compatible power supply
 
->Note: Assume Sensors Mezzanine is placed on top of Dragonboard410c
+>Note: It is assumed that Sensors Mezzanine is placed on top of Dragonboard410c
 
 ## 2.2) Software Setup
 
