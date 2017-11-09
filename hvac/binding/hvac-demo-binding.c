@@ -370,7 +370,7 @@ static void set(struct afb_req request)
 	int i, rc, x, changed;
 	double d;
 	int fd;
-	char buffer[30];
+	char buf[30], buf_r[10], buf_f[10];
 	struct json_object *query, *val;
 	uint8_t values[sizeof hvac_values / sizeof *hvac_values];
 	uint8_t saves[sizeof hvac_values / sizeof *hvac_values];
@@ -439,20 +439,21 @@ static void set(struct afb_req request)
 		/* init serial port */
 		fd = init_serial();
 
-		memset(buffer, 0, sizeof(buffer));
+		memset(buf, 0, sizeof(buf));
+		memset(buf_r, 0, sizeof(buf_r));
+		memset(buf_f, 0, sizeof(buf_f));
 	
 		/* data format: l:<left_temp>&r:<right_temp>&f:<fan_speed>& */
 
-		/* copy left temp data */	
-		sprintf(buffer, "l:%d&", hvac_values[0].value);
-		/* copy right temp data */	
-		strcat(buffer, "r:%d&", hvac_values[1].value);
-		/* copy fan speed data */	
-		strcat(buffer, "f:%d&", hvac_values[3].value);
-		strcat(buffer, "\r\n");
+		/* copy data to buffer */
+    		sprintf(buf, "l:%d&", 20);
+    		sprintf(buf_r, "r:%d&", 30);
+    		sprintf(buf_f, "f:%d&", 40);
+    		strcat(buf, buf_r);
+    		strcat(buf, buf_f);
 
 		/* send data over serial */
-		write(fd, (void *)buffer, sizeof(buffer));
+		write(fd, (void *)buf, sizeof(buf));
 		
 		rc = write_can();
 		if (rc >= 0)
