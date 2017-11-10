@@ -38,7 +38,6 @@ void loop()
       if (data != "") {
         data.toCharArray(buffer, 20);
         ret = sscanf(buffer, "%d:%d:%d", l_val, r_val, f_val);
-        
         // write HVAC values
         left_temp(l_val);
         right_temp(r_val);
