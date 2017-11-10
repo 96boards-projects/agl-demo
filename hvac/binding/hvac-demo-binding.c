@@ -154,7 +154,6 @@ static int open_can_dev_helper()
 {
 	struct ifreq ifr;
 
-	AFB_ERROR(interface, "CAN Handler socket : %d", can_handler.socket);
 	close(can_handler.socket);
 
 	can_handler.socket = socket(PF_CAN, SOCK_RAW, CAN_RAW);
@@ -195,7 +194,7 @@ static int open_can_dev()
 	int rc = retry(open_can_dev_helper);
 	if(rc < 0)
 	{
-		AFB_ERROR(interface, "Open of interface %s failed. Falling back to simulation mode", CAN_DEV);
+		AFB_DEBUG(interface, "Open of interface %s failed. Falling back to simulation mode", CAN_DEV);
 		can_handler.socket = 0;
 		can_handler.simulation = true;
 		can_handler.send_msg = "FAKE CAN FRAME";
@@ -256,7 +255,7 @@ static int write_can()
 		txCanFrame.data[6] = 0;
 		txCanFrame.data[7] = 0;
 
-		AFB_ERROR(interface, "%s: %d %d [%02x %02x %02x %02x %02x %02x %02x %02x]\n",
+		AFB_INFO(interface, "%s: %d %d [%02x %02x %02x %02x %02x %02x %02x %02x]\n",
 			can_handler.send_msg,
 			txCanFrame.can_id, txCanFrame.can_dlc,
 			txCanFrame.data[0], txCanFrame.data[1], txCanFrame.data[2], txCanFrame.data[3],
@@ -349,7 +348,7 @@ static void get_temp_left_zone(struct afb_req request)
  */
 static void get(struct afb_req request)
 {
-	AFB_ERROR(interface, "Getting all values");
+	AFB_DEBUG(interface, "Getting all values");
 	json_object *ret_json;
 
 	ret_json = json_object_new_object();
@@ -371,13 +370,13 @@ static void set(struct afb_req request)
 	int i, rc, x, changed;
 	double d;
 	int fd;
-	char buf[30], buf_r[10], buf_f[10];
+	char buf[20], buf_r[10], buf_f[10];
 	struct json_object *query, *val;
 	uint8_t values[sizeof hvac_values / sizeof *hvac_values];
 	uint8_t saves[sizeof hvac_values / sizeof *hvac_values];
 
 	/* records initial values */
-	AFB_ERROR(interface, "Records initial values");
+	AFB_DEBUG(interface, "Records initial values");
 	i = (int)(sizeof hvac_values / sizeof *hvac_values);
 	while (i) {
 		i--;
@@ -388,22 +387,22 @@ static void set(struct afb_req request)
 	query = afb_req_json(request);
 	changed = 0;
 	i = (int)(sizeof hvac_values / sizeof *hvac_values);
-	AFB_ERROR(interface, "Looping for args. i: %d", i);
+	AFB_DEBUG(interface, "Looping for args. i: %d", i);
 	while (i)
 	{
 		i--;
-		AFB_ERROR(interface, "Searching... query: %s, i: %d, comp: %s", json_object_to_json_string(query), i, hvac_values[i].name);
+		AFB_DEBUG(interface, "Searching... query: %s, i: %d, comp: %s", json_object_to_json_string(query), i, hvac_values[i].name);
 		if (json_object_object_get_ex(query, hvac_values[i].name, &val))
 		{
-			AFB_ERROR(interface, "We got it. Tests if it is an int or double.");
+			AFB_DEBUG(interface, "We got it. Tests if it is an int or double.");
 			if (json_object_is_type(val, json_type_int)) {
 				x = json_object_get_int(val);
-				AFB_ERROR(interface, "We get an int: %d",x);
+				AFB_DEBUG(interface, "We get an int: %d",x);
 			}
 			else if (json_object_is_type(val, json_type_double)) {
 				d = json_object_get_double(val);
 				x = (int)round(d);
-				AFB_ERROR(interface, "We get a double: %f => %d",d,x);
+				AFB_DEBUG(interface, "We get a double: %f => %d",d,x);
 			}
 			else {
 				afb_req_fail_f(request, "bad-request",
@@ -419,7 +418,7 @@ static void set(struct afb_req request)
 			if (values[i] != x) {
 				values[i] = (uint8_t)x;
 				changed = 1;
-				AFB_ERROR(interface,"%s changed to %d",hvac_values[i].name,x);
+				AFB_DEBUG(interface,"%s changed to %d",hvac_values[i].name,x);
 			}
 		}
 		else {
@@ -428,7 +427,7 @@ static void set(struct afb_req request)
 	}
 
 	/* attemps to set new values */
-	AFB_ERROR(interface, "Diff: %d", changed);
+	AFB_DEBUG(interface, "Diff: %d", changed);
 	if (changed)
 	{
 		i = (int)(sizeof hvac_values / sizeof *hvac_values);
