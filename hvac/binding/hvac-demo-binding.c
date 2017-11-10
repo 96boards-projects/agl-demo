@@ -443,12 +443,12 @@ static void set(struct afb_req request)
 		memset(buf_r, 0, sizeof(buf_r));
 		memset(buf_f, 0, sizeof(buf_f));
 	
-		/* data format: l:<left_temp>&r:<right_temp>&f:<fan_speed>& */
+		/* data format: left_temp:right_temp:fan_speed& */
 
 		/* copy data to buffer */
-    		sprintf(buf, "l:%d&", hvac_values[0].value);
-    		sprintf(buf_r, "r:%d&", hvac_values[1].value);
-    		sprintf(buf_f, "f:%d&", hvac_values[3].value);
+    		sprintf(buf, "%d:", hvac_values[0].value);
+    		sprintf(buf_r, "%d:", hvac_values[1].value);
+    		sprintf(buf_f, "%d&", hvac_values[3].value);
     		strcat(buf, buf_r);
     		strcat(buf, buf_f);
 
