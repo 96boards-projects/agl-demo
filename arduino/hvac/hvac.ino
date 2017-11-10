@@ -30,21 +30,19 @@ void setup()
   Serial.begin(9600);
 }
 
-// data format: l:<left_temp>&r:<right_temp>&f:<fan_speed>&
+// data format: left_temp:right_temp:fan_speed&
 void loop()
 {
-  if (Serial.available() > 0) {
-    for(int i=1; i<=3; i++) {
-      String data = Serial.readStringUntil(':');
-      if(data != "") {
-        String val = Serial.readStringUntil('&');
-	if (data == "l")
-	  left_temp(val.toInt());
-        else if (data == "r")
-          right_temp(val.toInt());
-        else if (data == "f")
-	  fan_speed(val.toInt());
+  while(Serial.available() > 0) {
+      String data = Serial.readStringUntil('&');
+      if (data != "") {
+        data.toCharArray(buffer, 20);
+        ret = sscanf(buffer, "%d:%d:%d", l_val, r_val, f_val);
+        
+        // write HVAC values
+        left_temp(l_val);
+        right_temp(r_val);
+        fan_speed(f_val);
       }
-    }
   }
 }
