@@ -6,7 +6,7 @@
 //connections
 int l_led = 9;
 int r_led = 10;
-int fan = 8;
+int fan = 11;
 
 int l_val, r_val, f_val;
 char buffer[20];
