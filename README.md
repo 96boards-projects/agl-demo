@@ -1,7 +1,15 @@
 # AGL demo for 96Boards
 
+This repository consists of [AGL](https://www.automotivelinux.org/) demos on
+Dragonboard410c.
+
+List of demos:
+- [1) HVAC demo](#1-hvac-demo)
+
+# 1. HVAC demo
+
 HVAC (Heat Ventilation and Air Control) demo focussed on demostrating the HVAC
-GUI present in [AGL](https://www.automotivelinux.org/) demo platform. This
+GUI present in [AGL]() demo platform. This
 involves controlling the fan speed and temperature. 
 
 For demonstration purposes, default HVAC GUI is modified as below:
@@ -10,7 +18,7 @@ For demonstration purposes, default HVAC GUI is modified as below:
 2. Controlling Left temperature - Controlling Light intensity
 3. Controlling Right temperature - Controlling Light intensity
 
-# Table of Contents
+## Table of Contents
 - [1) Hardware](#1-hardware)
    - [1.1) Hardware requirements](#11-hardware-requirements)
 - [2) Software setup](#2-software-setup)
@@ -20,9 +28,9 @@ For demonstration purposes, default HVAC GUI is modified as below:
 - [4) HVAC Demo](#4-hvac-demo)
 - [5) Video demonstration](#5-video-demonstration)
 
-# 1) Hardware
+## 1) Hardware
 
-## 1.1) Hardware requirements
+### 1.1) Hardware requirements
 
 - [Dragonboard410c](https://www.96boards.org/product/dragonboard410c/)
 - [96Boards Compliant Power Supply](http://www.96boards.org/product/power/)
@@ -37,9 +45,9 @@ For demonstration purposes, default HVAC GUI is modified as below:
 
 >Note: It is assumed that Sensors Mezzanine is placed on top of Dragonboard410c
 
-# 2) Software Setup
+## 2) Software Setup
 
-## 2.1) Arduino
+### 2.1) Arduino
 
 Controlling Fan Speed and LED intensity are handled by the Arduino. Sensors
 Mezzanine has an ATMega328 microcontroller comaptible with Arduino Uno. You
@@ -60,16 +68,16 @@ $ cd agl-demo/arduino/hvac
 Now open the `hvac.ino` using Arduino IDE and flash it onto the Sensors
 Mezzanine or Arduino Uno.
 
-## 2.2) Dragonboard410c
+### 2.2) Dragonboard410c
 
-> Execution environment: Host PC
+***Execution environment: Host PC***
 
-### Software dependencies:
+#### Software dependencies:
 ```shell
 $ sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib \
      build-essential chrpath socat libsdl1.2-dev xterm cpio curl
 ```
-### Downloading AGL source code
+#### Downloading AGL source code
 
 AGL uses [repo](https://source.android.com/source/using-repo) tool for maintaining
 repositories. We need to download the source on the host machine and cross compile
@@ -90,10 +98,11 @@ $ cd $AGL_TOP
 $ repo init -b dab -m dab_4.0.2.xml -u https://gerrit.automotivelinux.org/gerrit/AGL/AGL-repo
 $ repo sync
 ```
-> Note: 1. As of writing latest stable branch of AGL is 4.0.2. Always download the most recent stable release.
->       2. Replace AGL_TOP with the top level directory of cloned AGL source
+> Note:
+> 1. As of writing latest stable branch of AGL is 4.0.2. Always download the most recent stable release.
+> 2. Replace AGL_TOP with the top level directory of cloned AGL source.
 
-### Building AGL
+#### Building AGL
 
 Now, build the **agl-demo-platform** for Dragonboard410c.
 
@@ -110,7 +119,7 @@ Copy the custom HVAC recipie to AGL source
 ```shell
 $ cp hvac_git.bb $(AGL_TOP)/meta-agl-demo/recipes-demo-hmi/hvac/hvac_git.bb
 ```
-Execute `bitbake` command by moving to the AGL source directory
+Execute `bitbake` command by moving to the build directory of AGL source.
 
 ```shell
 $ cd $(AGL_TOP)/build
@@ -120,7 +129,7 @@ $ bitbake agl-demo-platform
 
 Build will take quite some time depending upon the host machine configuration.
 
-### Flashing AGL onto Dragonboard410c
+#### Flashing AGL onto Dragonboard410c
 
 Once the build has been completed, we have to flash the boot and rootfs images onto Dragonboard410c.
 Now, boot Dragonboard into fastboot mode by following the instructions [here](https://github.com/96boards/documentation/blob/master/ConsumerEdition/DragonBoard-410c/Installation/LinuxFastboot.md).
@@ -133,7 +142,7 @@ $ sudo fastboot flash rootfs agl-demo-platform-dragonboard-410c.ext4
 ```
 Once flash has been completed. Proceed to the below sections to execute HVAC demo.
 
-# 3) Hardware Setup
+## 3) Hardware Setup
 
 - Make sure the Dragonboard410c is powered off
 - Connect DC motor and LEDs to Sensors Mezzanine as per above schematic
@@ -141,7 +150,7 @@ Once flash has been completed. Proceed to the below sections to execute HVAC dem
 - Power on your 96Boards CE with compatible power supply
 - Dragonboard410c should now boot into AGL and homescreen should be visible.
 
-# 4) HVAC demo
+## 4) HVAC demo
 
 Navigate to the HVAC application from the Homescreen.
 
@@ -149,4 +158,4 @@ Navigate to the HVAC application from the Homescreen.
 2. To control the LED intensities, change the values of L/R temperatures by dragging up
    the `LO` box.
    
-# 5) [Video demonstration](https://www.youtube.com/watch?v=SEFfAzyVADc)
+## 5) [Video demonstration](https://www.youtube.com/watch?v=SEFfAzyVADc)
