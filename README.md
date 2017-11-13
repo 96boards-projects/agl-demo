@@ -147,8 +147,8 @@ Once flash has been completed. Proceed to the below sections to execute HVAC dem
 ![Circuit Diagram](./agl_hvac.jpg)
 
 - Make sure the Dragonboard410c is powered off
-- Connect DC motor and LEDs to Sensors Mezzanine as per above schematic
-- Connect LCD to Dragonboard410c via HDMI cable for display and Micro USB cable for touch input.
+- Connect DC motor and LEDs to Arduino as per above schematic
+- Connect LCD to Dragonboard410c via HDMI cable for display and Micro USB cable for touch input
 - Power on your 96Boards CE with compatible power supply
 - Dragonboard410c should now boot into AGL and homescreen should be visible.
 
