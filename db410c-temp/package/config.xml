@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="db410c-temp" version="0.1">
+  <name>DB410c-Temp</name>
+  <icon src="icon.svg"/>
+  <content src="bin/db410c-temp" type="application/vnd.agl.native"/>
+  <description>Demo application for displaying temperature data from Dragonboard410c</description>
+  <author>Manivannan Sadhasivam &lt;manivannan.sadhasivam@linaro.org&gt;</author>
+  <license>APL 2.0</license>
+  <feature name="urn:AGL:widget:required-api">
+    <param name="lib/libdb410c-temp-binding.so" value="local" />
+  </feature>
+  <feature name="urn:AGL:widget:required-permission">
+    <param name="urn:AGL:permission::public:no-htdocs" value="required" />
+  </feature>
+</widget>
+
+

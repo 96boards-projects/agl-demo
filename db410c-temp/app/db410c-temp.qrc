@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+	<file>MessageId.js</file>
+        <file>db410c-temp.qml</file>
+    </qresource>
+</RCC>
