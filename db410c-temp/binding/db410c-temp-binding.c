@@ -11,7 +11,7 @@
 
 #include <afb/afb-binding.h>
 
-#define ADDR 0x41
+#define ADDR 0x40
 
 int fd;
 char *i2c_bus = "/dev/i2c-0";
@@ -22,7 +22,7 @@ static void get_temp(struct afb_req request)
 {
 	char reg[1] = {0x03};
 	char data[2] = {0};
-	char temp_data[5];
+	char temp_data[6];
 	int tmp;
 	float val = 0.0;
 
@@ -36,8 +36,7 @@ static void get_temp(struct afb_req request)
 	} else {
 		/* convert the data to 14-bits */
 		tmp = (data[0] * 256 + (data[1] & 0xFC)) / 4;
-		if(tmp > 8191)
-		{
+		if(tmp > 8191) {
 			tmp -= 16384;
 		}
 	
@@ -45,7 +44,7 @@ static void get_temp(struct afb_req request)
 		val = tmp * 0.03125;
 
 		/* convert temp data to readable format and return it */
-		snprintf(temp_data, 4, "%f", val);
+		snprintf(temp_data, 6, "%f", val);
 		afb_req_success(request, NULL, temp_data);
 	}
 }
