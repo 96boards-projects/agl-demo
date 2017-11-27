@@ -189,7 +189,8 @@ This demo can be used as a template for developing applciations using AGL framew
 - [Dragonboard410c](https://www.96boards.org/product/dragonboard410c/)
 - [96Boards Compliant Power Supply](http://www.96boards.org/product/power/)
 - [Linksprite 96Boards Touch Screen](https://www.arrow.com/en/products/96boards-display-7/linksprite-technologies-inc)
-- [UART Mezzanine](https://www.96boards.org/product/uartserial/)
+- [Sensors Mezzanine](http://www.96boards.org/product/sensors-mezzanine/)
+- [TMP007 Sensor](https://learn.adafruit.com/adafruit-tmp007-sensor-breakout/overview)
 
 ## 2) Software Setup
 
@@ -203,7 +204,8 @@ Set up the SDK environment for building AGL applications by following this [guid
 
 * Make sure the Dragonboard410c is powered off
 * Connect Linksprite Touch Screen
-* Connect UART Mezzanine
+* Connect Sensors Mezzanine
+* Connect TMP007 senosr to I2C-0 port on Sensors Mezzanine
 * Power on your Dragonboard410c with compatible power supply
 
 ## 4) Demo Application
