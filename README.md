@@ -4,9 +4,10 @@ This repository consists of [AGL](https://www.automotivelinux.org/) demos on
 Dragonboard410c.
 
 List of demos:
-- [1) HVAC demo](#1-hvac-demo)
+- [1) HVAC Demo](#1-hvac-demo)
+- [2) Demo Application](#2-demo-application)
 
-# 1. HVAC demo
+# 1. HVAC Demo
 
 HVAC (Heat Ventilation and Air Control) demo focussed on demostrating the HVAC
 GUI present in [AGL]() demo platform. This
@@ -20,17 +21,17 @@ For demonstration purposes, default HVAC GUI is modified as below:
 
 ## Table of Contents
 - [1) Hardware](#1-hardware)
-   - [1.1) Hardware requirements](#11-hardware-requirements)
-- [2) Software setup](#2-software-setup)
+   - [1.1) Hardware Requirements](#11-hardware-requirements)
+- [2) Software Setup](#2-software-setup)
    - [2.1) Arduino](#21-arduino)
    - [2.2) Dragonboard410c](#22-dragonboard410c)
-- [3) Hardware setup](#3-hardware-setup)
+- [3) Hardware Setup](#3-hardware-setup)
 - [4) HVAC Demo](#4-hvac-demo)
-- [5) Video demonstration](#5-video-demonstration)
+- [5) Video Demonstration](#5-video-demonstration)
 
 ## 1) Hardware
 
-### 1.1) Hardware requirements
+### 1.1) Hardware Requirements
 
 - [Dragonboard410c](https://www.96boards.org/product/dragonboard410c/)
 - [96Boards Compliant Power Supply](http://www.96boards.org/product/power/)
@@ -72,12 +73,12 @@ Mezzanine or Arduino Uno.
 
 ***Execution environment: Host PC***
 
-#### Software dependencies:
+#### Software Dependencies:
 ```shell
 $ sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib \
      build-essential chrpath socat libsdl1.2-dev xterm cpio curl
 ```
-#### Downloading AGL source code
+#### Downloading AGL Source Code
 
 AGL uses [repo](https://source.android.com/source/using-repo) tool for maintaining
 repositories. We need to download the source on the host machine and cross compile
@@ -156,7 +157,9 @@ Once flash has been completed. Proceed to the below sections to execute HVAC dem
 > 1. If you are using Arduino on Sensors Mezzanine, no need to connect RX/TX lines and
      5v line from motor driver.
 
-## 4) HVAC demo
+## 4) HVAC Demo
+
+***Execution environment: Dragonboard410c***
 
 Navigate to the HVAC application from the Homescreen.
 
@@ -164,4 +167,82 @@ Navigate to the HVAC application from the Homescreen.
 2. To control the LED intensities, change the values of L/R temperatures by dragging up
    the `LO` box.
    
-## 5) [Video demonstration](https://www.youtube.com/watch?v=SEFfAzyVADc)
+## 5) [Video Demonstration](https://www.youtube.com/watch?v=SEFfAzyVADc)
+
+# 2. Demo Application
+
+A demo Qt application which displays temperature data from TMP007 recursively at 3 seconds interval.
+This demo can be used as a template for developing applciations using AGL framework.
+
+## Table of Contents
+- [1) Hardware](#1-hardware)
+   - [1.1) Hardware Requirements](#11-hardware-requirements)
+- [2) Software Setup](#2-software-setup)
+   - [2.1) SDK Environment](#21-sdk-environment)
+- [3) Hardware Setup](#3-hardware-setup)
+- [4) Demo Application](#4-demo-applcation)
+
+## 1) Hardware
+
+### 1.1) Hardware Requirements
+
+- [Dragonboard410c](https://www.96boards.org/product/dragonboard410c/)
+- [96Boards Compliant Power Supply](http://www.96boards.org/product/power/)
+- [Linksprite 96Boards Touch Screen](https://www.arrow.com/en/products/96boards-display-7/linksprite-technologies-inc)
+- [UART Mezzanine](https://www.96boards.org/product/uartserial/)
+
+## 2) Software Setup
+
+Boot agl-demo-platform on Dragonboard410c as mentioned in [HVAC Demo](https://github.com/96boards-projects/agl-demo#22-dragonboard410c).
+
+### 2.1) SDK Environment
+
+Set up the SDK environment for building AGL applications by following this [guide](http://docs.automotivelinux.org/docs/getting_started/en/dev/reference/setup-sdk-environment.html).
+
+## 3) Hardware Setup
+
+* Make sure the Dragonboard410c is powered off
+* Connect Linksprite Touch Screen
+* Connect UART Mezzanine
+* Power on your Dragonboard410c with compatible power supply
+
+## 4) Demo Application
+
+***Execution environment: Host PC***
+
+Now, the demo application can be built using the SDK environment inside Docker container on host.
+First navigate to the `docker-worker-generator` directory then follow the
+below steps to login to the SDK Docker container and build the demo application.
+
+```shell
+$ ./contrib/create_container 0;
+```
+Now SSH into the Docker container using the shown command in terminal and build the application.
+
+```shell
+$ ssh -p 2222 devel@mybuilder.local;
+$ source /xdt/sdk/environment-setup-<your_target>
+$ git clone https://github.com/96boards-projects/agl-demo
+$ cd agl-demo/db410c-temp
+$ qmake
+$ make
+```
+After the successful build, applciation package will be available under `package` directory.
+Copy it to the Dragonboard410c running AGL using SD card and start the application as below:
+
+***Execution environment: Dragonboard410c***
+
+> Note: Before starting the application, `homescreen` needs to be disabled as mentioned [here](http://docs.automotivelinux.org/docs/getting_started/en/dev/reference/troubleshooting.html#disabling-homescreen-in-agl-40x-dd-release).
+
+```shell
+$ cd <package_directory>
+$ afm-util install db410c-temp.wgt
+```
+Now, you should be able to see the Application ID: `db410c-temp@0.1`
+
+```shell
+$ afm-util start db410c-temp@0.1
+```
+Now, the application window will get opened and the temperature data will be shown as below:
+
+![Demo Application](db410c-temp-app.jpg)
