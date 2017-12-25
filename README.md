@@ -63,7 +63,7 @@ running Debian otherwise use Arduino IDE on the host system for programming.
 
 ```shell
 $ cd ~/Documents
-$ git clone https://96boards-projects/agl-demo.git
+$ git clone https://github.com/96boards-projects/agl-demo.git
 $ cd agl-demo/arduino/hvac
 ```
 Now open the `hvac.ino` using Arduino IDE and flash it onto the Sensors
