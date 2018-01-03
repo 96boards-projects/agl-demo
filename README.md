@@ -37,6 +37,7 @@ For demonstration purposes, default HVAC GUI is modified as below:
 - [96Boards Compliant Power Supply](http://www.96boards.org/product/power/)
 - [Linksprite 96Boards Touch Screen](https://www.arrow.com/en/products/96boards-display-7/linksprite-technologies-inc)
 - [Sensors Mezzanine](http://www.96boards.org/product/sensors-mezzanine/)
+- [Audio Mezzanine](https://www.96boards.org/product/audio-mezzanine/)(Required if using External Arduino)
 - [Arduino Uno](https://www.seeedstudio.com/Arduino-Uno-Rev3-p-2995.html)(Optional)
 - [DC motor with Propellers](https://www.amazon.com/Piece-Propeller-Motor-Brushed-Small/dp/B00U53SGRQ)
 - [L298 Motor Driver](https://www.amazon.com/Controller-Module-Bridge-Stepper-Arduino/dp/B00HNHUYSG)
@@ -154,8 +155,10 @@ Once flash has been completed. Proceed to the below sections to execute HVAC dem
 - Dragonboard410c should now boot into AGL and homescreen should be visible.
 
 > Note:
-> 1. If you are using Arduino on Sensors Mezzanine, no need to connect RX/TX lines and
+> 1. If you are using Arduino on Sensors Mezzanine, no need to connect Rx/Tx lines and
      5v line from motor driver.
+> 2. If you are using external Arduino, place Audio Mezzanine on top of DB410c. Then 
+     connect Rx/Tx lines from level shifted LS connector at the centre.
 
 ## 4) HVAC Demo
 
@@ -167,7 +170,7 @@ Navigate to the HVAC application from the Homescreen.
 2. To control the LED intensities, change the values of L/R temperatures by dragging up
    the `LO` box.
    
-## 5) [Video Demonstration](https://www.youtube.com/watch?v=SEFfAzyVADc)
+## 5) [Video Demonstration](https://youtu.be/zOLDFwhaho0)
 
 # 2. Demo Application
 
